@@ -46,19 +46,6 @@ public class BatteryOptimizationCheckModule extends ReactContextBaseJavaModule {
         promise.resolve(false);
     }
 
-    @SuppressLint("BatteryLife")
-    @ReactMethod
-    public void openRequestDisableOptimization() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            String packageName = reactContext.getPackageName();
-            Intent intent = new Intent();
-            intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
-            intent.setData(Uri.parse("package:" + packageName));
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            reactContext.startActivity(intent);
-        }
-    }
-
     @ReactMethod
     public void openOptimizationSettings() {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
